@@ -1,1 +1,1 @@
-Read the individual README files under each folder
+Read the individual README files for Scan and Lora example
