@@ -13,7 +13,6 @@
 #include "ttn.h"
 
 #define DEFAULT_SCAN_LIST_SIZE CONFIG_EXAMPLE_SCAN_LIST_SIZE
-#define MAX_AP_RECORDS 20
 #define NVS_NAMESPACE "wifi_scan"
 #define DEEP_SLEEP_DURATION 30 // Deep sleep duration in seconds
 
@@ -43,7 +42,7 @@ const char *button_event_table[] = {
 };
 
 // Define a global variable to store the latest scan results
-static wifi_ap_record_t latest_ap_info[MAX_AP_RECORDS];
+static wifi_ap_record_t latest_ap_info[DEFAULT_SCAN_LIST_SIZE];
 static uint16_t latest_ap_count = 0;
 static bool wifi_initialized = false;
 bool TTN_is_joined = false;
@@ -143,7 +142,7 @@ static void wifi_scan(void)
         wifi_initialized = true;
     }
 
-    uint16_t number = MAX_AP_RECORDS;
+    uint16_t number = DEFAULT_SCAN_LIST_SIZE;
     memset(latest_ap_info, 0, sizeof(latest_ap_info));
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
